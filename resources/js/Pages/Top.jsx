@@ -1,5 +1,6 @@
 import { Head } from '@inertiajs/react'
 import { SideMenu } from '../Components/SideMenu'
+import { LogoutButton } from '../Components/LogoutButton'
 
 export default function Top({}) {
     return (
@@ -9,7 +10,7 @@ export default function Top({}) {
                 <SideMenu />
                 <div className="flex-1 p-4 bg-gray-800 text-white">
                     <div className="flex justify-end">
-                        <button className="bg-gray-300 text-black px-4 py-2 rounded">ログアウト</button>
+                        <LogoutButton />
                     </div>
                     <h1 className="text-2xl mb-4">英会話学習記録</h1>
                     <div className="grid grid-cols-10 gap-1">

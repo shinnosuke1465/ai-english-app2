@@ -1,12 +1,12 @@
-import { Sidebar } from "flowbite-react";
-import { HiPlus, HiChatAlt2, HiOutlineChat } from "react-icons/hi";
+import React from 'react';
+import { HiPlus, HiChatAlt2 } from "react-icons/hi";
 
 export function SideMenu() {
     return (
         <div className="w-64 bg-green-700 text-white">
             <div className="flex items-center p-4 text-2xl font-bold">
-                <HiOutlineChat className="w-8 h-8 mr-2" />
-                MyEnglishApp
+                <img src="/favicon.png" alt="Chat Icon" className="w-8 h-8 mr-2" />
+                <span>MyEnglishApp</span>
             </div>
             <ul className="space-y-2">
                 <li>
