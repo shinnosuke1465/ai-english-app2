@@ -7,7 +7,7 @@ export default function Show({}) {
     return (
         <>
             <Head title="Show" />
-            <div className="flex h-screen">
+            <div className="flex h-screen overflow-hidden">
                 <SideMenu />
                 <div className="flex-1 p-4 bg-gray-800 text-white relative">
                     <div className="flex justify-end">
@@ -15,6 +15,8 @@ export default function Show({}) {
                     </div>
                     <div className="flex flex-col h-full justify-between">
                         <div className="flex flex-col space-y-4 overflow-y-auto">
+
+                            {/* AIのメッセージ */}
                             <div className="flex items-center">
                                 <div className="mr-2 bg-gray-600 p-2 rounded-full">
                                     AI
@@ -31,6 +33,8 @@ export default function Show({}) {
                                     </button>
                                 </div>
                             </div>
+
+                            {/* ユーザのメッセージ */}
                             <div className="flex justify-end items-center">
                                 <div className="bg-blue-600 p-2 rounded-lg max-w-xs">
                                     <p>This is a longer dummy text in English that serves as a placeholder for the actual content. It is meant to demonstrate how the layout will look with real text and to ensure that the design accommodates various lengths of text without breaking the layout.</p>
@@ -39,6 +43,7 @@ export default function Show({}) {
                                     You
                                 </div>
                             </div>
+
                         </div>
                         <div className="flex justify-end pb-10">
                             <button className="bg-gray-600 p-6 rounded-full">
