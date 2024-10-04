@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('thread_id')->unsigned()->comment('スレッドID');
             $table->text('message_en')->nullable()->comment('英語のメッセージ');
             $table->text('message_ja')->nullable()->comment('日本語のメッセージ');
-            $table->smallInteger('sender')->comment('送信者');
+            $table->smallInteger('sender')->comment('送信者 1:ユーザー 2:AI');
             $table->string('audio_file_path')->nullable()->comment('音声ファイルのパス');
             $table->timestamps();
 
