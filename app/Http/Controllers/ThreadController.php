@@ -52,6 +52,7 @@ class ThreadController extends Controller
         return Inertia::render('Thread/Show', [
             'threads' => $threads, // フロントエンドに渡す
             'messages' => $messages, // フロントエンドに渡す
+            'threadId' => $threadId,
         ]);
     }
 
