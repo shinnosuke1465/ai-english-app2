@@ -35,6 +35,11 @@ class MessageController extends Controller
                 'message_en' => $message_en,
             ]);
 
+            $messages = Message::where('thread_id', $threadId)->get();
+            // GPTにAPIリクエスト
+            $gptResponse = $apiService->callGptApi($messages);
+
+
             return response()->json(['message' => '音声データが保存されました'], 200);
         }
 
