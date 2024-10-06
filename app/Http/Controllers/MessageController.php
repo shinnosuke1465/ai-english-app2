@@ -28,7 +28,12 @@ class MessageController extends Controller
 
             // 音声データをAPIに送信
             $apiService = new ApiService();
-            $apiService->callWhiperApi($path);
+            $response = $apiService->callWhiperApi($path);
+            $message_en = $response['text'];
+
+            $message->update([
+                'message_en' => $message_en,
+            ]);
 
             return response()->json(['message' => '音声データが保存されました'], 200);
         }

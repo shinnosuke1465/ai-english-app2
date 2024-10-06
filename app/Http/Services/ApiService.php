@@ -32,7 +32,7 @@ class ApiService
                 'language' => 'en',
             ]);
 
-        dd('$response->json()', $response->json());
+        // dd('$response->json()', $response->json());
 
         return $response->json();
     }
