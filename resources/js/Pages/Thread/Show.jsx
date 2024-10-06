@@ -27,12 +27,18 @@ export default function Show({ threads, messages, threadId }) {
                 const formData = new FormData();
                 formData.append('audio', audioBlob, 'audio.wav');
 
-                // 音声データを送信
-                await axios.post(`/thread/${threadId}/message`, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                });
+                try {
+                    // 音声データを送信
+                    await axios.post(`/thread/${threadId}/message`, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                        },
+                    });
+                    window.location.reload();
+                } catch (error) {
+                    alert('音声データの送信に失敗しました');
+                    console.error('Error sending audio data:', error);
+                }
 
                 audioChunksRef.current = []; // チャンクをリセット
             };
@@ -86,7 +92,10 @@ export default function Show({ threads, messages, threadId }) {
                             ))}
                         </div>
                         <div className="flex justify-end pb-10">
-                            <button className="bg-gray-600 p-6 rounded-full" onClick={handleRecording}>
+                            <button
+                                className={`bg-gray-600 p-6 rounded-full ${isRecording ? 'bg-red-600' : ''}`}
+                                onClick={handleRecording}
+                            >
                                 <HiMicrophone size={32} />
                             </button>
                         </div>
