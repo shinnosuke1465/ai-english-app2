@@ -82,8 +82,7 @@ class ApiService
             'messages' => $messages,
         ]);
 
-        dd('$response->json()' , $response->json());
+        // dd('$response->json()' , $response->json());
         return $response->json();
-
     }
 }
