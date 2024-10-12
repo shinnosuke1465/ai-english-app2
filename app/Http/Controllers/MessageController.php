@@ -49,8 +49,12 @@ class MessageController extends Controller
             ]);
 
             // TTSにAPIリクエスト
-            $ttsResponse = $apiService->callTtsApi($aiMessageText);
-            dd('$ttsResponse', $ttsResponse);
+            $aiAudioFilePath = $apiService->callTtsApi($aiMessageText);
+            // 音声ファイルパスを上書き
+            $aiMessage->update([
+                'audio_file_path' => $aiAudioFilePath,
+            ]);
+            // dd('$aiAudioFilePath', $aiAudioFilePath);
 
             return response()->json(['message' => '音声データが保存されました'], 200);
         }

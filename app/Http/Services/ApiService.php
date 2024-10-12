@@ -108,6 +108,7 @@ class ApiService
         $filePath = storage_path('app/public/ai_audio/' . $fileName);
         file_put_contents($filePath, $response->body());
 
-        return $filePath; // 保存した音声のファイルパスを返す
+        // 修正: 返すパスを相対パスに変更
+        return 'ai_audio/' . $fileName; // 保存した音声のファイルパスを相対パスで返す
     }
 }
