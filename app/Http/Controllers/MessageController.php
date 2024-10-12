@@ -48,6 +48,10 @@ class MessageController extends Controller
                 'sender' => 2, // AI
             ]);
 
+            // TTSにAPIリクエスト
+            $ttsResponse = $apiService->callTtsApi($aiMessageText);
+            dd('$ttsResponse', $ttsResponse);
+
             return response()->json(['message' => '音声データが保存されました'], 200);
         }
 
