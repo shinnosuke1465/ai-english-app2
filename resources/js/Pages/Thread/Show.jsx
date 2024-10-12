@@ -2,7 +2,7 @@ import { Head } from '@inertiajs/react'
 import { SideMenu } from '../../Components/SideMenu'
 import { LogoutButton } from '../../Components/LogoutButton'
 import { HiMicrophone, HiSpeakerphone } from 'react-icons/hi'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 
 export default function Show({ threads, messages, threadId }) {
@@ -51,6 +51,17 @@ export default function Show({ threads, messages, threadId }) {
             setIsRecording(true);
         }
     };
+
+    useEffect(() => {
+        // 最新のメッセージの音声ファイルを再生
+        const latestMessage = messages[messages.length - 1];
+        if (latestMessage && latestMessage.audio_file_path) {
+            const audio = new Audio(`/storage/${latestMessage.audio_file_path}`);
+            audio.play().catch(error => {
+                console.error('音声ファイルの再生に失敗しました:', error);
+            });
+        }
+    }, [messages]); // messagesが変更されたときに実行
 
     return (
         <>
