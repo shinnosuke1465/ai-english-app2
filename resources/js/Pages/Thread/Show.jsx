@@ -10,6 +10,7 @@ export default function Show({ threads, messages, threadId }) {
     const [isLoading, setIsLoading] = useState(false); // ローディング状態を追加
     const mediaRecorderRef = useRef(null);
     const audioChunksRef = useRef([]);
+    const audioRefs = useRef({}); // 音声ファイルの参照を保持
 
     const handleRecording = async () => {
         if (isRecording) {
@@ -49,6 +50,24 @@ export default function Show({ threads, messages, threadId }) {
             };
             mediaRecorderRef.current.start();
             setIsRecording(true);
+        }
+    };
+
+    const handleAudioPlayback = (audioFilePath) => {
+        if (audioRefs.current[audioFilePath]) {
+            // 既に再生中の場合は停止
+            audioRefs.current[audioFilePath].pause();
+            delete audioRefs.current[audioFilePath];
+        } else {
+            // 新たに再生
+            const audio = new Audio(`/storage/${audioFilePath}`);
+            audioRefs.current[audioFilePath] = audio;
+            audio.play().catch(error => {
+                console.error('音声ファイルの再生に失敗しました:', error);
+            });
+            audio.onended = () => {
+                delete audioRefs.current[audioFilePath]; // 再生終了時に参照を削除
+            };
         }
     };
 
@@ -101,7 +120,10 @@ export default function Show({ threads, messages, threadId }) {
                                             <p>{message.message_en}</p>
                                         </div>
                                         <div className="flex items-center ml-2">
-                                            <button className="bg-gray-600 p-1 rounded-full">
+                                            <button
+                                                className="bg-gray-600 p-1 rounded-full"
+                                                onClick={() => handleAudioPlayback(message.audio_file_path)} // 音声再生のハンドラを追加
+                                            >
                                                 <HiSpeakerphone size={24} />
                                             </button>
                                             <button className="bg-gray-600 p-1 rounded-full ml-1">
