@@ -67,6 +67,7 @@ class MessageController extends Controller
      */
     public function translate(Request $request, int $threadId, int $messageId)
     {
-        dd('translate', $request);
+        // ダミーの日本語の文章をレスポンス
+        return response()->json(['message' => 'これはダミーの日本語の文章です。']);
     }
 }
