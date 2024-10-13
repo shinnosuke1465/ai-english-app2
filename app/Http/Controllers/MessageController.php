@@ -67,7 +67,18 @@ class MessageController extends Controller
      */
     public function translate(Request $request, int $threadId, int $messageId)
     {
-        // ダミーの日本語の文章をレスポンス
-        return response()->json(['message' => 'これはダミーの日本語の文章です。']);
+        // メッセージを取得
+        $message = Message::find($messageId);
+
+        if (!$message) {
+            return response()->json(['message' => 'メッセージが見つかりませんでした'], 404);
+        }
+
+        // GPTにAPIリクエスト
+        $apiService = new ApiService();
+        $gptResponse = $apiService->callTranslateApi($message->message_en);
+
+        // レスポンスを確認
+        dd($gptResponse);
     }
 }
