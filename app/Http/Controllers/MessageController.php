@@ -78,7 +78,11 @@ class MessageController extends Controller
         $apiService = new ApiService();
         $gptResponse = $apiService->callTranslateApi($message->message_en);
 
-        // レスポンスを確認
-        dd($gptResponse);
+        $aiMessageJa = $gptResponse['choices'][0]['message']['content'];
+        $message->update([
+            'message_ja' => $aiMessageJa
+        ]);
+
+        return response()->json(['message' => $aiMessageJa], 200);
     }
 }
