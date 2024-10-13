@@ -61,4 +61,12 @@ class MessageController extends Controller
 
         return response()->json(['message' => '音声データが保存されませんでした'], 400);
     }
+
+    /**
+     * 英文を日本語訳
+     */
+    public function translate(Request $request, int $threadId, int $messageId)
+    {
+        dd('translate', $request);
+    }
 }

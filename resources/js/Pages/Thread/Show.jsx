@@ -71,6 +71,16 @@ export default function Show({ threads, messages, threadId }) {
         }
     };
 
+    const handleTranslate = async (messageId) => {
+        try {
+            const response = await axios.post(`/thread/${threadId}/message/${messageId}/translate`);
+            alert(response.data.message); // 翻訳結果を表示
+        } catch (error) {
+            console.error('翻訳に失敗しました:', error);
+            alert('翻訳に失敗しました');
+        }
+    };
+
     useEffect(() => {
         // 最新のメッセージの音声ファイルを再生
         const latestMessage = messages[messages.length - 1];
@@ -126,7 +136,10 @@ export default function Show({ threads, messages, threadId }) {
                                             >
                                                 <HiSpeakerphone size={24} />
                                             </button>
-                                            <button className="bg-gray-600 p-1 rounded-full ml-1">
+                                            <button
+                                                className="bg-gray-600 p-1 rounded-full ml-1"
+                                                onClick={() => handleTranslate(message.id)}
+                                            >
                                                 Aあ
                                             </button>
                                         </div>
