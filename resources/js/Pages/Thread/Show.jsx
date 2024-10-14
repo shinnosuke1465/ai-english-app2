@@ -115,7 +115,7 @@ export default function Show({ threads, messages: initialMessages, threadId }) {
                 messageContainer.scrollTop = messageContainer.scrollHeight; // スクロール位置を一番下に設定
             }
         }
-    }, [messages]); // messagesが更新されるたびに実行
+    }, []);
 
     return (
         <>
