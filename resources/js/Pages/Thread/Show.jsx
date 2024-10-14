@@ -108,8 +108,14 @@ export default function Show({ threads, messages: initialMessages, threadId }) {
             audio.play().catch(error => {
                 console.error('音声ファイルの再生に失敗しました:', error);
             });
+
+            // スクロールを一番下に設定
+            const messageContainer = document.getElementById('message-container');
+            if (messageContainer) {
+                messageContainer.scrollTop = messageContainer.scrollHeight; // スクロール位置を一番下に設定
+            }
         }
-    }, []);
+    }, [messages]); // messagesが更新されるたびに実行
 
     return (
         <>
@@ -126,8 +132,7 @@ export default function Show({ threads, messages: initialMessages, threadId }) {
                         <LogoutButton />
                     </div>
                     <div className="flex flex-col h-full justify-between">
-                        <div className="flex flex-col space-y-4 overflow-y-auto">
-
+                        <div id="message-container" className="flex flex-col space-y-4 overflow-y-auto"> {/* IDを追加 */}
                             {messages.map((message, index) => (
                                 message.sender === 1 ? (
                                     // ユーザのメッセージ
