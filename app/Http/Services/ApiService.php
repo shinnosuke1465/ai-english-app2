@@ -61,7 +61,7 @@ class ApiService
 
         $systemMessage = [
             'role' => 'system',
-            'content' => 'You are a helpful English teacher. Please speak English.',
+            'content' => 'You are a friendly person having a casual conversation in English with the user. Respond naturally and keep the conversation engaging. Do not provide lists, extensive advice, or instructional content unless the user specifically asks for it.',
         ];
 
         $messages = $modelMessages->map(function($message) {
