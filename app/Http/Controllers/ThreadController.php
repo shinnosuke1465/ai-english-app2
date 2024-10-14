@@ -17,8 +17,14 @@ class ThreadController extends Controller
     public function index(): InertiaResponse
     {
         $threads = Thread::orderBy('id', 'desc')->get(); // スレッドデータを取得
+        $learningDates = Message::selectRaw('DATE(created_at) as date')
+                                ->groupBy('date')
+                                ->pluck('date')
+                                ->toArray(); // 学習した日付を取得
+
         return Inertia::render('Top', [
             'threads' => $threads, // フロントエンドに渡す
+            'learningDates' => $learningDates, // 学習日をフロントエンドに渡す
         ]);
     }
 

@@ -3,7 +3,7 @@ import { SideMenu } from '../Components/SideMenu'
 import { LogoutButton } from '../Components/LogoutButton'
 import { LearningRecordGrid } from '../Components/LearningRecordGrid'
 
-export default function Top({ threads }) { // threadsを受け取る
+export default function Top({ threads, learningDates }) { // learningDatesを受け取る
     return (
         <>
             <Head title="Top" />
@@ -14,7 +14,7 @@ export default function Top({ threads }) { // threadsを受け取る
                         <LogoutButton />
                     </div>
                     <h1 className="text-2xl mb-4">英会話学習記録</h1>
-                    <LearningRecordGrid />
+                    <LearningRecordGrid learningDates={learningDates} /> {/* learningDatesを渡す */}
                 </div>
             </div>
         </>
