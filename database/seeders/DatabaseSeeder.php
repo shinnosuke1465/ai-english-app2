@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
             'password' => 'password123',
         ]);
 
-        $this->call([
-            ThreadSeeder::class,
-            MessageSeeder::class,
-        ]);
+        // $this->call([
+        //     ThreadSeeder::class,
+        //     MessageSeeder::class,
+        // ]);
     }
 }
