@@ -66,6 +66,11 @@ sail artisan migrate
 sail artisan db:seed
 ```
 
+ストレージのシンボリックリンクを作成
+```
+sail artisan storage:link
+```
+
 ログイン画面：localhost/login を開く
 
 ログイン情報
