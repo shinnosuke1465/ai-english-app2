@@ -66,7 +66,7 @@ class ApiService
 
         $messages = $modelMessages->map(function($message) {
             return [
-                'role' => $message->role === 1 ? 'user' : 'assistant',
+                'role' => $message->sender === 1 ? 'user' : 'assistant',
                 'content' => $message->message_en,
             ];
         })->toArray();
