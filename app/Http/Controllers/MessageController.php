@@ -12,17 +12,17 @@ class MessageController extends Controller
     {
         // 音声データを保存
         if ($request->hasFile('audio')) {
-            $audio = $request->file('audio');
+            $audio = $request->file('audio'); //audioファイル格納
             // ファイル名を日時に指定して保存
             $timestamp = now()->format('YmdHis');
-            $path = $audio->storeAs('audio', "audio_{$timestamp}.wav", 'public'); // 音声データを保存
+            $path = $audio->storeAs('audio', "audio_{$timestamp}.wav", 'public'); // 音声データを保存。ファイルパスと保存先(storage/app/public)指定
 
             // データベースに保存する処理を追加
             $message = Message::create([
                 'thread_id' => $threadId,
                 'message_en' => 'dummy',
                 'message_ja' => '',
-                'audio_file_path' => $path,
+                'audio_file_path' => $path, //音声ファイルのパス
                 'sender' => 1, // ユーザー
             ]);
 
