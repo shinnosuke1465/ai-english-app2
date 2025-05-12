@@ -16,23 +16,24 @@ class ApiService
         //   -F file="@/path/to/file/audio.mp3" \
         //   -F model="whisper-1"
 
+        //APIにリクエスト。上記のリクエストに沿った内容を送る
         $response = Http::attach(
-                'file',
+                'file', //送信するaudioファイル指定
                 file_get_contents(
                     storage_path('app/public/' . $audioFilePath)
                 ),
                 'audio.wav'
             )
-            ->withHeaders([
-                'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+            ->withHeaders([ //headerを設定
+                'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'), //APIkey取得
                 // 'Content-Type' => 'multipart/form-data',
             ])
-            ->post('https://api.openai.com/v1/audio/transcriptions', [
+            ->post('https://api.openai.com/v1/audio/transcriptions', [ //apiのurl設定
                 'model' => 'whisper-1',
                 'language' => 'en',
             ]);
 
-        // dd('$response->json()', $response->json());
+        // dd('$response->json()', $response->json()); //確認用コード。検証のネットワークで確認
 
         return $response->json();
     }
